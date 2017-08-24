@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824234109) do
+ActiveRecord::Schema.define(version: 20170824234944) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.string "style"
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string  "name"
+    t.string  "type"
+    t.integer "value"
+    t.integer "musician_id"
+  end
+
+  create_table "musicians", force: :cascade do |t|
+    t.string  "name"
+    t.string  "type"
+    t.integer "net_worth"
+    t.integer "band_id"
   end
 
 end
