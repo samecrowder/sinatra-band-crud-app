@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    #binding.pry
     erb :'/index'
   end
 
@@ -18,14 +19,18 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     if valid_input?(params)
+      @musician = Musician.new(username: params[:username], name: params[:name], password: params[:password], type_of_musician: params[:type], net_worth: params[:net_worth])
+      binding.pry
     end
   end
 
   def valid_input?(params)
     {"name"=>"", "username"=>"", "password"=>"", "type"=>"", "net_worth"=>""}
     if Musician.find_by(username: params[:username])
-      #error that this username is taken
-      redirect to "/"
+      #This username is already taken
+      false
+    else
+      true
     end
   end
 end
