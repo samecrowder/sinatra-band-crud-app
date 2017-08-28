@@ -58,6 +58,14 @@ class ApplicationController < Sinatra::Base
     erb :'/musicians/musicians'
   end
 
+  get '/bands' do
+    erb :'/bands/bands'
+  end
+
+  get '/instruments' do
+    erb :'/instruments/instruments'
+  end
+
   def valid_input?(params)
     if Musician.find_by(username: params[:username])
       #This username is already taken

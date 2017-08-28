@@ -1,0 +1,7 @@
+<h2>All Instruments: </h2>
+
+<ul>
+  <% Instrument.all.each do |i| %>
+    <li>Name: <%= i.name %></li>
+  <% end %>
+</ul>
