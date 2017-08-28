@@ -5,12 +5,16 @@
 <p>Type: <%= @musician.type_of_musician %></p>
 <p>Net worth: <%= @musician.net_worth %></p>
 
-<p>Band: <%= @musician.band.name %></p>
+<% if @musician.band != nil %>
+  <p>Band: <%= @musician.band.name %></p>
+<% end %>
 
 
-<p>Instruments: </p>
-<ul>
-  <% @musician.instruments.each do |instrument| %>
-    <li><%= instrument.name %></li>
-  <% end %>
-</ul>
+<% if @musician.instruments.size > 0 %>
+  <p>Instruments: </p>
+  <ul>
+    <% @musician.instruments.each do |instrument| %>
+      <li><%= instrument.name %></li>
+    <% end %>
+  </ul>
+<% end %>
