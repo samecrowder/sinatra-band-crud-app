@@ -20,12 +20,19 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     if valid_input?(params)
       @musician = Musician.new(username: params[:username], name: params[:name], password: params[:password], type_of_musician: params[:type], net_worth: params[:net_worth])
-      binding.pry
+      session[:user_id] = @musician.id
+      @musician.save
+      redirect to "/musicians/#{@musician.id}"
+    else
+      redirect to '/'
     end
   end
 
+  get '/musicians/:id' do
+    erb :'/musicians/show_musician'
+  end
+
   def valid_input?(params)
-    {"name"=>"", "username"=>"", "password"=>"", "type"=>"", "net_worth"=>""}
     if Musician.find_by(username: params[:username])
       #This username is already taken
       false

@@ -1,0 +1,16 @@
+<h2>Musician show page</h2>
+<% @musician = Musician.find(params[:id]) %>
+
+<h3>Name: <%= @musician.name %></h3>
+<p>Type: <%= @musician.type_of_musician %></p>
+<p>Net worth: <%= @musician.net_worth %></p>
+
+<p>Band: <%= @musician.band.name %></p>
+
+
+<p>Instruments: </p>
+<ul>
+  <% @musician.instruments.each do |instrument| %>
+    <li><%= instrument.name %></li>
+  <% end %>
+</ul>
