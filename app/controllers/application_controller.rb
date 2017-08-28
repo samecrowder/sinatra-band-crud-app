@@ -45,6 +45,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    session[:user_id] = nil
+    redirect to '/'
+  end
+
   get '/musicians/:id' do
     erb :'/musicians/show_musician'
   end
