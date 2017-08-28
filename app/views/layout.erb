@@ -4,6 +4,9 @@
   </head>
   <body>
     <h1>This site is the Bandinator</h1>
+    <% if session[:user_id] != nil %>
+      <h2>Current musician logged in: <%= Musician.find(session[:user_id]).name %></h2>
+    <% end %>
     <a href="/">Return to home page</a>
     <%= yield %>
   </body>
