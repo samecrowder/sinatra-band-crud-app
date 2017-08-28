@@ -1,0 +1,7 @@
+<h2>All Musicians: </h2>
+
+<ul>
+  <% Musician.all.each do |m| %>
+    <li><%= m.name %></li>
+  <% end %>
+</ul>
