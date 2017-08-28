@@ -11,21 +11,24 @@ class ApplicationController < Sinatra::Base
     erb :'/index'
   end
 
-  get '/signup' do
+  get '/musicians/new' do
     if session[:user_id] == nil
       erb :'/musicians/create_musician'
     end
   end
 
+  get '/musicians/failed-signup' do
+    erb :'/musicians/failed_signup'
+  end
+
   post '/signup' do
-    #binding.pry
     if valid_input?(params)
       @musician = Musician.new(username: params[:username], name: params[:name], password: params[:password], type_of_musician: params[:type], net_worth: params[:net_worth])
       session[:user_id] = @musician.id
       @musician.save
       redirect to "/musicians/#{@musician.id}"
     else
-      redirect to '/'
+      redirect to '/musicians/failed-signup'
     end
   end
 
