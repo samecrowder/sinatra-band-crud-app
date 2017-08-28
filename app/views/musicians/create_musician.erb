@@ -1,12 +1,12 @@
 <form method="POST" action='/signup'>
   <h2>Sign up as a new musician</h2>
-  <p>Name: <input type="text" name="name"></p>
-  <p>Username: <input type="text" name="username"></p>
-  <p>Password: <input type="text" name="password"></p>
+  <p>Name: <input type="text" name="name" required=""></p>
+  <p>Username: <input type="text" name="username" required></p>
+  <p>Password: <input type="text" name="password" required></p>
 
   <h2>Key info:</h2>
-  <p>Type of musician: <input type="text" name="type"> (Valid answers are: Singer, Guitarist, Bassist, Drummer)</p>
-  <p>Net worth: <input type="text" name="net_worth"></p>
+  <p>Type of musician: <input type="text" name="type" required> (Valid answers are: Singer, Guitarist, Bassist, Drummer)</p>
+  <p>Net worth: <input type="text" name="net_worth" required></p>
 
   <input type="submit" value="Create account">
 </form>

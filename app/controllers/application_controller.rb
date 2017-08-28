@@ -6,6 +6,10 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
+  get '/' do
+    erb :'/index'
+  end
+
   get '/signup' do
     if session[:user_id] == nil
       erb :'/musicians/create_musician'
@@ -18,6 +22,10 @@ class ApplicationController < Sinatra::Base
   end
 
   def valid_input?(params)
-    
+    {"name"=>"", "username"=>"", "password"=>"", "type"=>"", "net_worth"=>""}
+    if Musician.find_by(username: params[:username])
+      #error that this username is taken
+      redirect to "/"
+    end
   end
 end
