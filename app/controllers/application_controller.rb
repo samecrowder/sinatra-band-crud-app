@@ -28,6 +28,22 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/login' do
+    if session[:user_id] == nil
+      erb :'/musicians/login'
+    end
+  end
+
+  post '/login' do
+    @musician = Musician.find_by(username: params[:username])
+    if @musician && @musician.authenticate(params[:password])
+      session[:user_id] = @musician.id
+      redirect to "/musicians/#{@musician.id}"
+    else
+      redirect to '/login'
+    end
+  end
+
   get '/musicians/:id' do
     erb :'/musicians/show_musician'
   end
