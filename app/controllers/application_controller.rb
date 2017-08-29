@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     binding.pry
-    if valid_input?(params)
+    if valid_input?(params) && !(params[:band_id] != "" && params[:new_band_name] != "" && params[:new_band_style] != "")
       @musician = Musician.new(username: params[:username], name: params[:name], password: params[:password], type_of_musician: params[:type], net_worth: params[:net_worth])
       session[:user_id] = @musician.id
       @musician.save
