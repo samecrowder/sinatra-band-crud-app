@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     binding.pry
-    if valid_input?(params) && !(params[:band_id] != "" && params[:new_band_name] != "" && params[:new_band_style] != "")
+    if valid_input?(params)
       @musician = Musician.new(username: params[:username], name: params[:name], password: params[:password], type_of_musician: params[:type], net_worth: params[:net_worth])
       session[:user_id] = @musician.id
       @musician.save
@@ -74,6 +74,13 @@ class ApplicationController < Sinatra::Base
     if Musician.find_by(username: params[:username])
       #This username is already taken
       false
+    elsif !(params[:band_id] != "" && params[:new_band_name] != "" && params[:new_band_style] != "")
+      false
+    elsif !(params[:type].downcase == "guitarist" || 
+      params[:type].downcase == "bassist" || 
+      params[:type].downcase == "singer" || 
+      params[:type].downcase == "drummer")
+    false
     else
       true
     end
