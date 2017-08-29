@@ -8,5 +8,11 @@
   <p>Type of musician: <input type="text" name="type" required> (Valid answers are: Singer, Guitarist, Bassist, Drummer)</p>
   <p>Net worth: <input type="text" name="net_worth" required></p>
 
+  <h3>Assign to existing band</h3>
+  <% Band.all.each do |band| %>
+    <input type="radio" name="band_id" value=<%= band.id %>><%= band.name %><br>
+  <% end %>
+  <br>
+
   <input type="submit" value="Create account">
 </form>

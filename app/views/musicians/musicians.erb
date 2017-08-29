@@ -2,6 +2,6 @@
 
 <ul>
   <% Musician.all.each do |m| %>
-    <li>Name: <%= m.name %>, Username: <%= m.username %></li>
+    <li>Name: <a href=<%= "/musicians/#{m.id}" %>><%= m.name %></a>, Username: <%= m.username %></li>
   <% end %>
 </ul>
